@@ -1,15 +1,13 @@
 import java.util.Random;
 class x implements Runnable
-{
-    
+{  
     Random r = new Random();
     static int num;
     public void run()
     {
-      num=r.nextInt(25);
-        System.out.println(num);
+        num=r.nextInt(10);
+        System.out.println("Number : "+num);
     }
-
 }
 class y implements Runnable
 {
@@ -17,10 +15,8 @@ class y implements Runnable
     {
         if(x.num%2==0)
         {
-        System.out.println((int)Math.pow(x.num, 2));
-        System.out.println();
+            System.out.println("Square : "+x.num*x.num+"\n");
         }
-        
     }
 }
 class z implements Runnable
@@ -29,30 +25,29 @@ class z implements Runnable
     {
         if(x.num%2!=0)
         {
-        System.out.println((int)Math.pow(x.num, 3));
-        System.out.println();
+            System.out.println("Cube   : "+x.num*x.num*x.num+"\n");
         }
-        
     }   
 }
-class oddeven
+public class Main
 {
     public static void main(String[] args) 
     {
         x a=new x();
         y b=new y();
         z c=new z();
-        for(int  i=1;i<=10;i++){
-        Thread t1=new Thread(a);
-        Thread t2=new Thread(b);
-        Thread t3=new Thread(c);
-        try
+        for(int  i=1;i<=5;i++)
         {
-            Thread.sleep(1000);
-        }
-        catch(Exception E)
-        {    
-        }
+            Thread t1=new Thread(a);
+            Thread t2=new Thread(b);
+            Thread t3=new Thread(c);
+            try
+            {
+                Thread.sleep(1000);
+            }
+            catch(Exception E)
+            {    
+            }
             t1.start();
             t2.start();
             t3.start();
